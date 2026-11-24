@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>학생 성취도 분석실</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="학생 성취도 분석실 홈">
+        <span class="brand-mark">S</span>
+        <span><strong>성취도 분석실</strong><small>AI STUDENT ANALYZER</small></span>
+      </a>
+      <div class="topbar-right">
+        <span class="environment"><i></i> 개발 환경</span>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="intro">
+        <div class="eyebrow">TEACHER WORKSPACE</div>
+        <h1>평가 자료를 분석하고<br><em>학생의 성장을 기록하세요.</em></h1>
+        <p>학생별 답안 분석부터 성취기준별 평가, 생활기록부 초안 작성까지 한곳에서 관리합니다.</p>
+      </section>
+
+      <section class="workflow" aria-label="분석 진행 단계">
+        <div class="step active"><span>01</span><b>평가 설정</b></div>
+        <div class="step"><span>02</span><b>자료 업로드</b></div>
+        <div class="step"><span>03</span><b>기준 입력</b></div>
+        <div class="step"><span>04</span><b>분석 및 검토</b></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">PROJECT SETUP</span>
+            <h2>평가 정보</h2>
+            <p>이번 분석의 기본 정보를 입력해 주세요.</p>
+          </div>
+          <span class="required-note"><b>*</b> 필수 항목</span>
+        </div>
+
+        <form id="project-form">
+          <div class="form-grid">
+            <label class="field">
+              <span>학교급 <b>*</b></span>
+              <select name="schoolLevel" required>
+                <option value="초등학교" selected>초등학교</option>
+                <option value="중학교">중학교</option>
+                <option value="고등학교">고등학교</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>학년 <b>*</b></span>
+              <select name="grade" required>
+                <option value="">학년 선택</option>
+                <option>1학년</option><option>2학년</option><option>3학년</option>
+                <option>4학년</option><option>5학년</option><option>6학년</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>학기 <b>*</b></span>
+              <select name="semester" required>
+                <option value="">학기 선택</option>
+                <option>1학기</option><option>2학기</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>과목 <b>*</b></span>
+              <input name="subject" type="text" placeholder="예: 수학" required maxlength="40">
+            </label>
+            <label class="field">
+              <span>평가 영역 <b>*</b></span>
+              <input name="evaluationArea" type="text" placeholder="예: 자료와 가능성" required maxlength="100">
+            </label>
+            <label class="field">
+              <span>평가 유형</span>
+              <select name="evaluationType">
+                <option>단원 평가</option><option>수행 평가</option><option>형성 평가</option>
+                <option>총괄 평가</option><option>기타</option>
+              </select>
+            </label>
+            <label class="field field-wide">
+              <span>평가 날짜 <small>(선택)</small></span>
+              <input name="evaluationDate" type="date">
+            </label>
+          </div>
+          <div class="form-actions">
+            <p>입력한 정보는 분석 프로젝트의 기본 정보로 사용됩니다.</p>
+            <button class="primary-button" type="submit">다음 단계 <span>→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel upload-panel" id="upload-section">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">SOURCE DOCUMENTS</span>
+            <h2>평가 자료 업로드</h2>
+            <p>학생별 시험지를 PDF로 준비해 주세요.</p>
+          </div>
+          <span class="file-type">PDF</span>
+        </div>
+        <label class="dropzone" id="dropzone" for="pdf-files">
+          <span class="upload-icon">↑</span>
+          <strong>PDF 파일을 여기에 놓거나 <u>파일 선택</u></strong>
+          <span>여러 PDF 파일을 한 번에 선택할 수 있습니다.</span>
+          <small>현재 단계에서는 파일 목록과 기본 정보만 확인합니다. 실제 비공개 저장 및 분석 기능은 다음 개발 단계에서 연결됩니다.</small>
+        </label>
+        <input id="pdf-files" type="file" accept="application/pdf,.pdf" multiple hidden>
+        <div id="file-list" class="file-list" aria-live="polite"></div>
+      </section>
+
+      <div class="notice">
+        <span class="notice-icon">i</span>
+        <p><strong>개인정보 보호 안내</strong><br>실제 학생 이름과 평가 자료를 업로드하기 전에는 서버 저장소와 접근 권한 설정을 완료해야 합니다. 현재 초기 버전은 파일을 서버로 전송하지 않습니다.</p>
+      </div>
+
+      <footer class="footer">
+        <span>학생 성취도 분석실</span>
+        <span>교사의 검토와 판단을 돕는 보조 도구입니다.</span>
+      </footer>
+    </main>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

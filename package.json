@@ -1,0 +1,14 @@
+{
+  "name": "student-achievement-analyzer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI 학생 성취도 분석 및 생활기록부 작성 웹앱",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev"
+  },
+  "devDependencies": {
+    "vercel": "^39.2.0"
+  }
+}
